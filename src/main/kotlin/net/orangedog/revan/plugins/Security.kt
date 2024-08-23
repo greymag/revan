@@ -1,4 +1,4 @@
-package example.com.plugins
+package net.orangedog.revan.plugins
 
 import io.ktor.server.application.*
 

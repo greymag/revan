@@ -1,7 +1,7 @@
-package example.com
+package net.orangedog.revan
 
-import example.com.plugins.*
 import io.ktor.server.application.*
+import net.orangedog.revan.plugins.*
 
 fun main(args: Array<String>) {
     io.ktor.server.netty.EngineMain.main(args)
