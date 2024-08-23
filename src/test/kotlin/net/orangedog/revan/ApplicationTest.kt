@@ -11,7 +11,7 @@ class ApplicationTest {
     fun testRoot() = testApplication {
         client.get("/").apply {
             assertEquals(HttpStatusCode.OK, status)
-            assertEquals("Hello World!", bodyAsText())
+            assertEquals("I am Revan reborn. And before me you are nothing.", bodyAsText())
         }
     }
 }
