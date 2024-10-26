@@ -4,3 +4,9 @@ ktor:
             - net.orangedog.revan.ApplicationKt.module
     deployment:
         port: 8090
+
+    development: true # TODO: Set to false for production
+
+trubar:
+    mongodb:
+        connectionString: "$MONGODB_CONNECTION_STRING"

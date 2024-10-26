@@ -32,5 +32,11 @@ out/
 /nbdist/
 /.nb-gradle/
 
+### Kotlin ###
+.kotlin/
+
 ### VS Code ###
 .vscode/
+
+### Config ###
+.env

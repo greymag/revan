@@ -8,7 +8,12 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
+    val mongoDBConnectionString = environment.config.propertyOrNull("trubar.mongodb.connectionString")?.getString()
+    // TODO: check if the connection string is not null and not empty
+
     configureAdministration()
+    val db = configureDatabases(mongoDBConnectionString!!)
+    configureDependencyInjection(db)
     configureSerialization()
     configureMonitoring()
     configureHTTP()

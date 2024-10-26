@@ -5,6 +5,7 @@ import io.ktor.server.application.*
 import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import net.orangedog.revan.routes.trubarModule
 
 fun Application.configureRouting() {
     install(StatusPages) {
@@ -12,9 +13,12 @@ fun Application.configureRouting() {
             call.respondText(text = "500: $cause" , status = HttpStatusCode.InternalServerError)
         }
     }
+
     routing {
         get("/") {
             call.respondText("I am Revan reborn. And before me you are nothing.")
         }
     }
+
+    trubarModule()
 }
