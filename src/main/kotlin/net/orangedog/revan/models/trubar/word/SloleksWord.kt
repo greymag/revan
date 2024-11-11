@@ -48,7 +48,7 @@ data class SloleksWord(
                 id = id ?: ObjectId(),
                 status = status ?: throw IllegalArgumentException("Status is required"),
                 lemma = lemma ?: throw IllegalArgumentException("Lemma is required"),
-                lexeme = lexeme,
+                lexeme = lexeme.toList(),
                 category = category ?: throw IllegalArgumentException("Category is required"),
                 subcategory = subcategory,
                 type = type,
@@ -57,8 +57,8 @@ data class SloleksWord(
                 case = case,
                 form = form,
                 frequency = frequency ?: throw IllegalArgumentException("Frequency is required"),
-                related = related,
-                wordForms = wordForms
+                related = related.toList(),
+                wordForms = wordForms.toList()
             )
         }
 

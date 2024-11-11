@@ -63,9 +63,9 @@ data class SloleksWordForm(
             clitic = clitic,
             ownerNumber = ownerNumber,
             ownerGender = ownerGender,
-            orthographyList = orthographyList.ifEmpty { throw IllegalArgumentException("Orthography list is required") },
-            accentuationList = accentuationList,
-            pronunciationList = pronunciationList
+            orthographyList = orthographyList.toList().ifEmpty { throw IllegalArgumentException("Orthography list is required") },
+            accentuationList = accentuationList.toList(),
+            pronunciationList = pronunciationList.toList()
         )
 
         fun setJosMs(value: String) = apply {
