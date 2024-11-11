@@ -2,8 +2,8 @@ package net.orangedog.revan.plugins
 
 import com.mongodb.kotlin.client.coroutine.MongoDatabase
 import io.ktor.server.application.*
-import net.orangedog.revan.models.trubar.SloleksWordRepository
-import net.orangedog.revan.models.trubar.SloleksWordRepositoryImpl
+import net.orangedog.revan.models.trubar.word.SloleksWordRepository
+import net.orangedog.revan.models.trubar.word.SloleksWordRepositoryImpl
 import org.koin.dsl.module
 import org.koin.ktor.plugin.Koin
 import org.koin.logger.slf4jLogger

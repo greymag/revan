@@ -45,6 +45,10 @@ dependencies {
     implementation("io.insert-koin:koin-ktor:$koin_version")
     implementation("io.insert-koin:koin-logger-slf4j:$koin_version")
 
+    // XML
+    implementation("org.dom4j:dom4j:2.1.4")
+    implementation("javax.xml.parsers:jaxp-api:1.4.5")
+
     testImplementation("io.ktor:ktor-server-test-host-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }

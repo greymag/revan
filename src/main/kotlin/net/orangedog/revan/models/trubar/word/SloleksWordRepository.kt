@@ -1,4 +1,4 @@
-package net.orangedog.revan.models.trubar
+package net.orangedog.revan.models.trubar.word
 
 import com.mongodb.MongoException
 import com.mongodb.client.model.Filters

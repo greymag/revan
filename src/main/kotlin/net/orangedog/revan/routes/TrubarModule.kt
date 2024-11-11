@@ -3,9 +3,9 @@ package net.orangedog.revan.routes
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import net.orangedog.revan.models.trubar.SloleksWord
-import net.orangedog.revan.models.trubar.SloleksWordRepository
 import org.bson.types.ObjectId
+import net.orangedog.revan.models.trubar.word.SloleksWordRepository
+import net.orangedog.revan.modules.trubar.importer.SloleksXmlConverter
 import org.koin.ktor.ext.inject
 
 fun Application.trubarModule() {
