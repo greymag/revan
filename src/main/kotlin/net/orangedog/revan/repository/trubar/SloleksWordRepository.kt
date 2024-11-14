@@ -6,6 +6,7 @@ import com.mongodb.kotlin.client.coroutine.MongoDatabase
 import kotlinx.coroutines.flow.firstOrNull
 import net.orangedog.revan.models.trubar.word.SloleksWord
 import org.bson.BsonValue
+import net.orangedog.revan.plugins.sloleksWords
 import org.bson.types.ObjectId
 
 interface SloleksWordRepository {
@@ -16,13 +17,10 @@ interface SloleksWordRepository {
 class SloleksWordRepositoryImpl(
     private val mongoDatabase: MongoDatabase
 ) : SloleksWordRepository {
-    companion object {
-        private const val COLLECTION = "trubar_sloleks_words"
-    }
 
     override suspend fun insertOne(word: SloleksWord): BsonValue? {
         try {
-            val result = mongoDatabase.getCollection<SloleksWord>(COLLECTION).insertOne(word)
+            val result = getCollection().insertOne(word)
             return result.insertedId
         } catch (e: MongoException) {
             // TODO: handle error
@@ -32,7 +30,9 @@ class SloleksWordRepositoryImpl(
     }
 
     override suspend fun findOneById(objectId: ObjectId): SloleksWord? =
-        mongoDatabase.getCollection<SloleksWord>(COLLECTION).withDocumentClass<SloleksWord>()
+        getCollection().withDocumentClass<SloleksWord>()
             .find(Filters.eq("_id", objectId))
             .firstOrNull()
+
+    private fun getCollection() = mongoDatabase.sloleksWords
 }
