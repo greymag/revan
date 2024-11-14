@@ -173,6 +173,7 @@ data class SloleksWordForm(
             ownerGender = null
             orthographyList.clear()
             accentuationList.clear()
+            pronunciationList.clear()
             nextOrthographyBuilder.clear()
             nextPronunciationBuilder.clear()
         }
