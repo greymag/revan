@@ -5,6 +5,7 @@ import io.ktor.server.application.*
 import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import net.orangedog.revan.routes.adminModule
 import net.orangedog.revan.routes.trubarModule
 
 fun Application.configureRouting() {
@@ -20,5 +21,6 @@ fun Application.configureRouting() {
         }
     }
 
+    adminModule()
     trubarModule()
 }

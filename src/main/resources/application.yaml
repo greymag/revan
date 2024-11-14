@@ -7,6 +7,9 @@ ktor:
 
     development: true # TODO: Set to false for production
 
+mongodb:
+    connectionString: "$MONGODB_CONNECTION_STRING"
+
 trubar:
-    mongodb:
-        connectionString: "$MONGODB_CONNECTION_STRING"
+    import:
+        wordsDir: "$TRUBAR_IMPORT_WORDS_DIR:"
