@@ -5,8 +5,8 @@ import org.bson.codecs.pojo.annotations.BsonId
 import org.bson.types.ObjectId
 
 data class SloleksWord(
-    @BsonId
-    val id: ObjectId,
+//    @BsonId
+//    val id: ObjectId,
     var status: SloleksEntryStatus,
     val lemma: String,
     val lexeme: List<String>,
@@ -24,7 +24,7 @@ data class SloleksWord(
     val wordForms: List<SloleksWordForm>,
 ) {
     class Builder {
-        private var id: ObjectId? = null
+//        private var id: ObjectId? = null
         private var status: SloleksEntryStatus? = null
         private var lemma: String? = null
         private var lexeme = mutableListOf<String>()
@@ -45,7 +45,7 @@ data class SloleksWord(
 
         fun build(): SloleksWord {
             return SloleksWord(
-                id = id ?: ObjectId(),
+//                id = id ?: ObjectId(),
                 status = status ?: throw IllegalArgumentException("Status is required"),
                 lemma = lemma ?: throw IllegalArgumentException("Lemma is required"),
                 lexeme = lexeme.toList(),
@@ -129,7 +129,7 @@ data class SloleksWord(
         )
 
         fun clear() {
-            id = null
+//            id = null
             status = null
             lemma = null
             lexeme.clear()
