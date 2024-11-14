@@ -1,9 +1,10 @@
-package net.orangedog.revan.models.trubar.word
+package net.orangedog.revan.repository.trubar
 
 import com.mongodb.MongoException
 import com.mongodb.client.model.Filters
 import com.mongodb.kotlin.client.coroutine.MongoDatabase
 import kotlinx.coroutines.flow.firstOrNull
+import net.orangedog.revan.models.trubar.word.SloleksWord
 import org.bson.BsonValue
 import org.bson.types.ObjectId
 
