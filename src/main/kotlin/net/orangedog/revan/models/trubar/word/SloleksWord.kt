@@ -1,9 +1,9 @@
 package net.orangedog.revan.models.trubar.word
 
+import kotlinx.serialization.Serializable
 import net.orangedog.revan.models.common.ensureNotSet
-import org.bson.codecs.pojo.annotations.BsonId
-import org.bson.types.ObjectId
 
+@Serializable
 data class SloleksWord(
 //    @BsonId
 //    val id: ObjectId,

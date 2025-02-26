@@ -1,7 +1,9 @@
 package net.orangedog.revan.models.trubar.word
 
+import kotlinx.serialization.Serializable
 import net.orangedog.revan.models.common.ensureNotSet
 
+@Serializable
 data class SloleksOrthography(
     val form: String,
     val frequency: Int?,
