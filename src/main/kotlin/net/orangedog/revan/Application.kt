@@ -21,5 +21,6 @@ fun Application.module() {
     configureMonitoring()
     configureHTTP()
     configureSecurity()
+    configureExceptionHandling()
     configureRouting()
 }
