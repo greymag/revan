@@ -689,6 +689,116 @@
   <script>
     // Script section to load models into a JS Var
     var defs = {}
+            defs["Map"] = {
+  "properties" : { }
+};
+            defs["Map_String"] = { };
+            defs["SloleksOrthography"] = {
+  "required" : [ "form" ],
+  "properties" : {
+    "form" : { },
+    "frequency" : {
+      "format" : "int32"
+    },
+    "norm" : { },
+    "morphologyPatterns" : { }
+  }
+};
+            defs["SloleksPronunciation"] = {
+  "required" : [ "ipa", "sampa" ],
+  "properties" : {
+    "ipa" : { },
+    "sampa" : { }
+  }
+};
+            defs["SloleksWord"] = {
+  "required" : [ "category", "frequency", "lemma", "lexeme", "related", "status", "wordForms" ],
+  "properties" : {
+    "status" : {
+      "enum" : [ "MANUAL", "AUTOMATIC" ]
+    },
+    "lemma" : { },
+    "lexeme" : {
+      "items" : { }
+    },
+    "category" : {
+      "enum" : [ "NOUN", "VERB", "ADJECTIVE", "ADVERB", "PRONOUN", "NUMERAL", "PARTICLE", "CONJUNCTION", "INTERJECTION", "PREPOSITION", "ABBREVIATION" ]
+    },
+    "subcategory" : { },
+    "type" : {
+      "enum" : [ "MAIN", "GENERAL", "COMMON", "PARTICIPLE", "AUXILIARY", "SUBORDINATING", "COORDINATING", "POSSESSIVE", "PROPER", "INDEFINITE", "SPECIAL", "ORDINAL", "CARDINAL", "REFLEXIVE", "PERSONAL", "DEMONSTRATIVE", "PRONOMINAL", "INTERROGATIVE", "RELATIVE", "NEGATIVE" ]
+    },
+    "aspect" : {
+      "enum" : [ "PROGRESSIVE", "PERFECTIVE", "BIASPECTUAL" ]
+    },
+    "gender" : {
+      "enum" : [ "MASCULINE", "FEMININE", "NEUTER" ]
+    },
+    "case" : {
+      "enum" : [ "NOMINATIVE", "GENITIVE", "DATIVE", "ACCUSATIVE", "LOCATIVE", "INSTRUMENTAL" ]
+    },
+    "form" : {
+      "enum" : [ "LETTER", "DIGIT", "ROMAN" ]
+    },
+    "frequency" : {
+      "format" : "int32"
+    },
+    "related" : {
+      "items" : { }
+    },
+    "wordForms" : {
+      "items" : {
+        "$ref" : "#/components/schemas/SloleksWordForm"
+      }
+    }
+  }
+};
+            defs["SloleksWordForm"] = {
+  "required" : [ "accentuationList", "josMsd", "orthographyList", "pronunciationList" ],
+  "properties" : {
+    "josMsd" : { },
+    "vform" : {
+      "enum" : [ "INFINITIVE", "SUPINE", "PARTICIPLE", "PRESENT", "FUTURE", "IMPERATIVE", "CONDITIONAL" ]
+    },
+    "number" : {
+      "enum" : [ "SINGULAR", "DUAL", "PLURAL" ]
+    },
+    "case" : {
+      "enum" : [ "NOMINATIVE", "GENITIVE", "DATIVE", "ACCUSATIVE", "LOCATIVE", "INSTRUMENTAL" ]
+    },
+    "gender" : {
+      "enum" : [ "MASCULINE", "FEMININE", "NEUTER" ]
+    },
+    "person" : {
+      "enum" : [ "FIRST", "SECOND", "THIRD" ]
+    },
+    "degree" : {
+      "enum" : [ "POSITIVE", "SUPERLATIVE", "COMPARATIVE" ]
+    },
+    "clitic" : {
+      "enum" : [ "YES", "BOUND" ]
+    },
+    "ownerNumber" : {
+      "enum" : [ "SINGULAR", "DUAL", "PLURAL" ]
+    },
+    "ownerGender" : {
+      "enum" : [ "MASCULINE", "FEMININE", "NEUTER" ]
+    },
+    "orthographyList" : {
+      "items" : {
+        "$ref" : "#/components/schemas/SloleksOrthography"
+      }
+    },
+    "accentuationList" : {
+      "items" : { }
+    },
+    "pronunciationList" : {
+      "items" : {
+        "$ref" : "#/components/schemas/SloleksPronunciation"
+      }
+    }
+  }
+};
   </script>
 
   <div class="container-fluid">
@@ -706,8 +816,23 @@
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
                   <li class="nav-header" data-group="Default"><a href="#api-Default">API Methods - Default</a></li>
+                    <li data-group="Default" data-name="adminGet" class="">
+                      <a href="#api-Default-adminGet">adminGet</a>
+                    </li>
+                    <li data-group="Default" data-name="adminImportWordsGet" class="">
+                      <a href="#api-Default-adminImportWordsGet">adminImportWordsGet</a>
+                    </li>
+                    <li data-group="Default" data-name="jsonKotlinxSerializationGet" class="">
+                      <a href="#api-Default-jsonKotlinxSerializationGet">jsonKotlinxSerializationGet</a>
+                    </li>
                     <li data-group="Default" data-name="rootGet" class="">
                       <a href="#api-Default-rootGet">rootGet</a>
+                    </li>
+                    <li data-group="Default" data-name="trubarGet" class="">
+                      <a href="#api-Default-trubarGet">trubarGet</a>
+                    </li>
+                    <li data-group="Default" data-name="trubarTestGet" class="">
+                      <a href="#api-Default-trubarTestGet">trubarTestGet</a>
                     </li>
           </ul>
         </nav>
@@ -715,7 +840,7 @@
       <div id="content">
         <div id="project">
           <div class="pull-left">
-            <h1>Application API</h1>
+            <h1>net_orangedog_revan API</h1>
           </div>
           <div class="clearfix"></div>
         </div>
@@ -724,12 +849,778 @@
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
               <div class="app-desc">Version: 1.0.0</div>
             <hr>
-            <div>Application API</div>
+            <div>net_orangedog_revan API</div>
           </div>
         </div>
         <div id="sections">
                 <section id="api-Default">
                   <h1>Default</h1>
+                    <div id="api-Default-adminGet">
+                      <article id="api-Default-adminGet-0" data-group="User" data-name="adminGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>adminGet</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/admin</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-adminGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-adminGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-adminGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-adminGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-adminGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-adminGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-adminGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-adminGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-adminGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-adminGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-adminGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-adminGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: text/plain"\
+"https://net_orangedog_revan/admin"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-adminGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        try {
+            apiInstance.adminGet();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#adminGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-adminGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        try {
+            apiInstance.adminGet();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#adminGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-adminGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-adminGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance adminGetWithCompletionHandler: 
+              ^(NSError* error) {
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-adminGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var NetOrangedogRevanApi = require('net_orangedog_revan_api');
+
+var api = new NetOrangedogRevanApi.DefaultApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.adminGet(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-adminGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-adminGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class adminGetExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+
+            try
+            {
+                apiInstance.adminGet();
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.adminGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-adminGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+
+try {
+    $api_instance->adminGet();
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->adminGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-adminGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+
+eval { 
+    $api_instance->adminGet();
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->adminGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-adminGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+
+try: 
+    api_instance.admin_get()
+except ApiException as e:
+    print("Exception when calling DefaultApi->adminGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-adminGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-adminGet-200-schema">
+                                  <div id='responses-adminGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "text/plain" : {
+      "schema" : {
+        "x-content-type" : "text/plain"
+      },
+      "examples" : {
+        "Example#1" : {
+          "value" : "These aren't the droids you're looking for"
+        }
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["text/plain"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-adminGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-adminGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-adminGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-adminImportWordsGet">
+                      <article id="api-Default-adminImportWordsGet-0" data-group="User" data-name="adminImportWordsGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>adminImportWordsGet</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/admin/import-words</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-adminImportWordsGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-adminImportWordsGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-adminImportWordsGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-adminImportWordsGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-adminImportWordsGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-adminImportWordsGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-adminImportWordsGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-adminImportWordsGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-adminImportWordsGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-adminImportWordsGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-adminImportWordsGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-adminImportWordsGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: text/plain"\
+"https://net_orangedog_revan/admin/import-words"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-adminImportWordsGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        try {
+            apiInstance.adminImportWordsGet();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#adminImportWordsGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-adminImportWordsGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        try {
+            apiInstance.adminImportWordsGet();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#adminImportWordsGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-adminImportWordsGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-adminImportWordsGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance adminImportWordsGetWithCompletionHandler: 
+              ^(NSError* error) {
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-adminImportWordsGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var NetOrangedogRevanApi = require('net_orangedog_revan_api');
+
+var api = new NetOrangedogRevanApi.DefaultApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.adminImportWordsGet(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-adminImportWordsGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-adminImportWordsGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class adminImportWordsGetExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+
+            try
+            {
+                apiInstance.adminImportWordsGet();
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.adminImportWordsGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-adminImportWordsGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+
+try {
+    $api_instance->adminImportWordsGet();
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->adminImportWordsGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-adminImportWordsGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+
+eval { 
+    $api_instance->adminImportWordsGet();
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->adminImportWordsGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-adminImportWordsGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+
+try: 
+    api_instance.admin_import_words_get()
+except ApiException as e:
+    print("Exception when calling DefaultApi->adminImportWordsGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-adminImportWordsGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-adminImportWordsGet-200-schema">
+                                  <div id='responses-adminImportWordsGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "text/plain" : {
+      "schema" : {
+        "x-content-type" : "text/plain"
+      },
+      "examples" : {
+        "Example#1" : {
+          "value" : "Import completed"
+        },
+        "Example#2" : {
+          "value" : ""
+        },
+        "Example#3" : {
+          "value" : ""
+        },
+        "Example#4" : {
+          "value" : "Import directory is not set"
+        }
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["text/plain"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-adminImportWordsGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-adminImportWordsGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-adminImportWordsGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-jsonKotlinxSerializationGet">
+                      <article id="api-Default-jsonKotlinxSerializationGet-0" data-group="User" data-name="jsonKotlinxSerializationGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>jsonKotlinxSerializationGet</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/json/kotlinx-serialization</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-jsonKotlinxSerializationGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-jsonKotlinxSerializationGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-jsonKotlinxSerializationGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-jsonKotlinxSerializationGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-jsonKotlinxSerializationGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-jsonKotlinxSerializationGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-jsonKotlinxSerializationGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-jsonKotlinxSerializationGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-jsonKotlinxSerializationGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-jsonKotlinxSerializationGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-jsonKotlinxSerializationGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-jsonKotlinxSerializationGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: */*"\
+"https://net_orangedog_revan/json/kotlinx-serialization"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-jsonKotlinxSerializationGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        try {
+            Map_String result = apiInstance.jsonKotlinxSerializationGet();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#jsonKotlinxSerializationGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-jsonKotlinxSerializationGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        try {
+            Map_String result = apiInstance.jsonKotlinxSerializationGet();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#jsonKotlinxSerializationGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-jsonKotlinxSerializationGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-jsonKotlinxSerializationGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance jsonKotlinxSerializationGetWithCompletionHandler: 
+              ^(Map_String output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-jsonKotlinxSerializationGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var NetOrangedogRevanApi = require('net_orangedog_revan_api');
+
+var api = new NetOrangedogRevanApi.DefaultApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.jsonKotlinxSerializationGet(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-jsonKotlinxSerializationGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-jsonKotlinxSerializationGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class jsonKotlinxSerializationGetExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+
+            try
+            {
+                Map_String result = apiInstance.jsonKotlinxSerializationGet();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.jsonKotlinxSerializationGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-jsonKotlinxSerializationGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+
+try {
+    $result = $api_instance->jsonKotlinxSerializationGet();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->jsonKotlinxSerializationGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-jsonKotlinxSerializationGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+
+eval { 
+    my $result = $api_instance->jsonKotlinxSerializationGet();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->jsonKotlinxSerializationGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-jsonKotlinxSerializationGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+
+try: 
+    api_response = api_instance.json_kotlinx_serialization_get()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling DefaultApi->jsonKotlinxSerializationGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-jsonKotlinxSerializationGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-jsonKotlinxSerializationGet-200-schema">
+                                  <div id='responses-jsonKotlinxSerializationGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/Map_String"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-jsonKotlinxSerializationGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-jsonKotlinxSerializationGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-jsonKotlinxSerializationGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
                     <div id="api-Default-rootGet">
                       <article id="api-Default-rootGet-0" data-group="User" data-name="rootGet" data-version="0">
                         <div class="pull-left">
@@ -739,7 +1630,7 @@
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Hello World!</p>
+                        <p class="marked"></p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/</span></code></pre>
@@ -764,7 +1655,7 @@
                           <div class="tab-pane active" id="examples-Default-rootGet-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: text/plain"\
-"http://0.0.0.0:8080/"</code></pre>
+"https://net_orangedog_revan/"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-rootGet-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -781,8 +1672,7 @@ public class DefaultApiExample {
         
         DefaultApi apiInstance = new DefaultApi();
         try {
-            'String' result = apiInstance.rootGet();
-            System.out.println(result);
+            apiInstance.rootGet();
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#rootGet");
             e.printStackTrace();
@@ -799,8 +1689,7 @@ public class DefaultApiExample {
     public static void main(String[] args) {
         DefaultApi apiInstance = new DefaultApi();
         try {
-            'String' result = apiInstance.rootGet();
-            System.out.println(result);
+            apiInstance.rootGet();
         } catch (ApiException e) {
             System.err.println("Exception when calling DefaultApi#rootGet");
             e.printStackTrace();
@@ -817,10 +1706,7 @@ public class DefaultApiExample {
 DefaultApi *apiInstance = [[DefaultApi alloc] init];
 
 [apiInstance rootGetWithCompletionHandler: 
-              ^('String' output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
+              ^(NSError* error) {
                             if (error) {
                                 NSLog(@"Error: %@", error);
                             }
@@ -829,14 +1715,14 @@ DefaultApi *apiInstance = [[DefaultApi alloc] init];
                             </div>
 
                             <div class="tab-pane" id="examples-Default-rootGet-0-javascript">
-                              <pre class="prettyprint"><code class="language-js">var ApplicationApi = require('application_api');
+                              <pre class="prettyprint"><code class="language-js">var NetOrangedogRevanApi = require('net_orangedog_revan_api');
 
-var api = new ApplicationApi.DefaultApi()
+var api = new NetOrangedogRevanApi.DefaultApi()
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully. Returned data: ' + data);
+    console.log('API called successfully.');
   }
 };
 api.rootGet(callback);
@@ -864,8 +1750,7 @@ namespace Example
 
             try
             {
-                'String' result = apiInstance.rootGet();
-                Debug.WriteLine(result);
+                apiInstance.rootGet();
             }
             catch (Exception e)
             {
@@ -884,8 +1769,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $api_instance = new Swagger\Client\ApiDefaultApi();
 
 try {
-    $result = $api_instance->rootGet();
-    print_r($result);
+    $api_instance->rootGet();
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->rootGet: ', $e->getMessage(), PHP_EOL;
 }
@@ -900,8 +1784,7 @@ use WWW::SwaggerClient::DefaultApi;
 my $api_instance = WWW::SwaggerClient::DefaultApi->new();
 
 eval { 
-    my $result = $api_instance->rootGet();
-    print Dumper($result);
+    $api_instance->rootGet();
 };
 if ($@) {
     warn "Exception when calling DefaultApi->rootGet: $@\n";
@@ -919,8 +1802,7 @@ from pprint import pprint
 api_instance = swagger_client.DefaultApi()
 
 try: 
-    api_response = api_instance.root_get()
-    pprint(api_response)
+    api_instance.root_get()
 except ApiException as e:
     print("Exception when calling DefaultApi->rootGet: %s\n" % e)</code></pre>
                             </div>
@@ -953,12 +1835,11 @@ except ApiException as e:
   "content" : {
     "text/plain" : {
       "schema" : {
-        "type" : "string",
         "x-content-type" : "text/plain"
       },
       "examples" : {
         "Example#1" : {
-          "value" : "Hello World!"
+          "value" : "I am Revan reborn. And before me you are nothing."
         }
       }
     }
@@ -985,6 +1866,506 @@ except ApiException as e:
                                     </script>
                                   </div>
                                   <input id='responses-rootGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-trubarGet">
+                      <article id="api-Default-trubarGet-0" data-group="User" data-name="trubarGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>trubarGet</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/trubar</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-trubarGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-trubarGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-trubarGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-trubarGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-trubarGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-trubarGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-trubarGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-trubarGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-trubarGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-trubarGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-trubarGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-trubarGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: text/plain"\
+"https://net_orangedog_revan/trubar"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-trubarGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        try {
+            apiInstance.trubarGet();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#trubarGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-trubarGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        try {
+            apiInstance.trubarGet();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#trubarGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-trubarGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-trubarGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance trubarGetWithCompletionHandler: 
+              ^(NSError* error) {
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-trubarGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var NetOrangedogRevanApi = require('net_orangedog_revan_api');
+
+var api = new NetOrangedogRevanApi.DefaultApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.trubarGet(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-trubarGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-trubarGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class trubarGetExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+
+            try
+            {
+                apiInstance.trubarGet();
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.trubarGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-trubarGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+
+try {
+    $api_instance->trubarGet();
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->trubarGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-trubarGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+
+eval { 
+    $api_instance->trubarGet();
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->trubarGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-trubarGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+
+try: 
+    api_instance.trubar_get()
+except ApiException as e:
+    print("Exception when calling DefaultApi->trubarGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-trubarGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-trubarGet-200-schema">
+                                  <div id='responses-trubarGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "text/plain" : {
+      "schema" : {
+        "x-content-type" : "text/plain"
+      },
+      "examples" : {
+        "Example#1" : {
+          "value" : "Trubar API"
+        }
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["text/plain"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-trubarGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-trubarGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-trubarGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Default-trubarTestGet">
+                      <article id="api-Default-trubarTestGet-0" data-group="User" data-name="trubarTestGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>trubarTestGet</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/trubar/test</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-trubarTestGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-trubarTestGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-trubarTestGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-trubarTestGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-trubarTestGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-trubarTestGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-trubarTestGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-trubarTestGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-trubarTestGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-trubarTestGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-trubarTestGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-trubarTestGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: */*"\
+"https://net_orangedog_revan/trubar/test"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-trubarTestGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+        try {
+            apiInstance.trubarTestGet();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#trubarTestGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-trubarTestGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+        try {
+            apiInstance.trubarTestGet();
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#trubarTestGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-trubarTestGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-trubarTestGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance trubarTestGetWithCompletionHandler: 
+              ^(NSError* error) {
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-trubarTestGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var NetOrangedogRevanApi = require('net_orangedog_revan_api');
+
+var api = new NetOrangedogRevanApi.DefaultApi()
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.trubarTestGet(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-trubarTestGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-trubarTestGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class trubarTestGetExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+
+            try
+            {
+                apiInstance.trubarTestGet();
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.trubarTestGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-trubarTestGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+
+try {
+    $api_instance->trubarTestGet();
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->trubarTestGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-trubarTestGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+
+eval { 
+    $api_instance->trubarTestGet();
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->trubarTestGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-trubarTestGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+
+try: 
+    api_instance.trubar_test_get()
+except ApiException as e:
+    print("Exception when calling DefaultApi->trubarTestGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-trubarTestGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-trubarTestGet-200-schema">
+                                  <div id='responses-trubarTestGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "items" : {
+          "$ref" : "#/components/schemas/SloleksWord"
+        },
+        "x-content-type" : "*/*"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["*/*"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-trubarTestGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-trubarTestGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-trubarTestGet-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 

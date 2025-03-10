@@ -1,4 +1,4 @@
-openapi: "3.0.3"
+openapi: "3.1.0"
 info:
   title: "Application API"
   description: "Application API"
@@ -6,9 +6,9 @@ info:
 servers:
   - url: "http://0.0.0.0:8080"
 paths:
-  /:
+  /admin:
     get:
-      description: "Hello World!"
+      description: ""
       responses:
         "200":
           description: "OK"
@@ -18,6 +18,359 @@ paths:
                 type: "string"
               examples:
                 Example#1:
-                  value: "Hello World!"
+                  value: "These aren't the droids you're looking for"
+  /admin/import-words:
+    get:
+      description: ""
+      responses:
+        "200":
+          description: "OK"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "Import completed"
+                Example#2:
+                  value: ""
+                Example#3:
+                  value: ""
+                Example#4:
+                  value: "Import directory is not set"
+  /trubar:
+    get:
+      description: ""
+      responses:
+        "200":
+          description: "OK"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "Trubar API"
+  /trubar/find:
+    get:
+      description: ""
+      parameters:
+      - name: "search"
+        in: "query"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        "400":
+          description: "Bad Request"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/FindResultDto"
+  /trubar/wordData:
+    get:
+      description: ""
+      parameters:
+      - name: "lemma"
+        in: "query"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        "400":
+          description: "Bad Request"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/WordDataResultDto"
+  /:
+    get:
+      description: ""
+      responses:
+        "200":
+          description: "OK"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "I am Revan reborn. And before me you are nothing."
 components:
-  schemas: {}
+  schemas:
+    ErrorDto:
+      type: "object"
+      properties:
+        domain:
+          type: "string"
+        code:
+          type: "integer"
+          format: "int32"
+      required:
+      - "domain"
+      - "code"
+    ErrorResponse:
+      type: "object"
+      properties:
+        error:
+          $ref: "#/components/schemas/ErrorDto"
+        description:
+          type: "string"
+        retry:
+          type: "boolean"
+      required:
+      - "error"
+      - "retry"
+    SloleksFindResultEntry:
+      type: "object"
+      properties:
+        lemma:
+          type: "string"
+        category:
+          type: "string"
+          enum:
+          - "NOUN"
+          - "VERB"
+          - "ADJECTIVE"
+          - "ADVERB"
+          - "PRONOUN"
+          - "NUMERAL"
+          - "PARTICLE"
+          - "CONJUNCTION"
+          - "INTERJECTION"
+          - "PREPOSITION"
+          - "ABBREVIATION"
+      required:
+      - "lemma"
+      - "category"
+    FindResultDto:
+      type: "object"
+      properties:
+        list:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/SloleksFindResultEntry"
+      required:
+      - "list"
+    SloleksOrthography:
+      type: "object"
+      properties:
+        form:
+          type: "string"
+        frequency:
+          type: "integer"
+          format: "int32"
+        norm:
+          type: "string"
+        morphologyPatterns:
+          type: "string"
+      required:
+      - "form"
+    SloleksPronunciation:
+      type: "object"
+      properties:
+        ipa:
+          type: "string"
+        sampa:
+          type: "string"
+      required:
+      - "ipa"
+      - "sampa"
+    SloleksWordForm:
+      type: "object"
+      properties:
+        josMsd:
+          type: "string"
+        vform:
+          type: "string"
+          enum:
+          - "INFINITIVE"
+          - "SUPINE"
+          - "PARTICIPLE"
+          - "PRESENT"
+          - "FUTURE"
+          - "IMPERATIVE"
+          - "CONDITIONAL"
+        number:
+          type: "string"
+          enum:
+          - "SINGULAR"
+          - "DUAL"
+          - "PLURAL"
+        case:
+          type: "string"
+          enum:
+          - "NOMINATIVE"
+          - "GENITIVE"
+          - "DATIVE"
+          - "ACCUSATIVE"
+          - "LOCATIVE"
+          - "INSTRUMENTAL"
+        gender:
+          type: "string"
+          enum:
+          - "MASCULINE"
+          - "FEMININE"
+          - "NEUTER"
+        person:
+          type: "string"
+          enum:
+          - "FIRST"
+          - "SECOND"
+          - "THIRD"
+        degree:
+          type: "string"
+          enum:
+          - "POSITIVE"
+          - "SUPERLATIVE"
+          - "COMPARATIVE"
+        clitic:
+          type: "string"
+          enum:
+          - "YES"
+          - "BOUND"
+        ownerNumber:
+          type: "string"
+          enum:
+          - "SINGULAR"
+          - "DUAL"
+          - "PLURAL"
+        ownerGender:
+          type: "string"
+          enum:
+          - "MASCULINE"
+          - "FEMININE"
+          - "NEUTER"
+        orthographyList:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/SloleksOrthography"
+        accentuationList:
+          type: "array"
+          items:
+            type: "string"
+        pronunciationList:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/SloleksPronunciation"
+      required:
+      - "josMsd"
+      - "orthographyList"
+      - "accentuationList"
+      - "pronunciationList"
+    SloleksWord:
+      type: "object"
+      properties:
+        status:
+          type: "string"
+          enum:
+          - "MANUAL"
+          - "AUTOMATIC"
+        lemma:
+          type: "string"
+        lexeme:
+          type: "array"
+          items:
+            type: "string"
+        category:
+          type: "string"
+          enum:
+          - "NOUN"
+          - "VERB"
+          - "ADJECTIVE"
+          - "ADVERB"
+          - "PRONOUN"
+          - "NUMERAL"
+          - "PARTICLE"
+          - "CONJUNCTION"
+          - "INTERJECTION"
+          - "PREPOSITION"
+          - "ABBREVIATION"
+        subcategory:
+          type: "string"
+        type:
+          type: "string"
+          enum:
+          - "MAIN"
+          - "GENERAL"
+          - "COMMON"
+          - "PARTICIPLE"
+          - "AUXILIARY"
+          - "SUBORDINATING"
+          - "COORDINATING"
+          - "POSSESSIVE"
+          - "PROPER"
+          - "INDEFINITE"
+          - "SPECIAL"
+          - "ORDINAL"
+          - "CARDINAL"
+          - "REFLEXIVE"
+          - "PERSONAL"
+          - "DEMONSTRATIVE"
+          - "PRONOMINAL"
+          - "INTERROGATIVE"
+          - "RELATIVE"
+          - "NEGATIVE"
+        aspect:
+          type: "string"
+          enum:
+          - "PROGRESSIVE"
+          - "PERFECTIVE"
+          - "BIASPECTUAL"
+        gender:
+          type: "string"
+          enum:
+          - "MASCULINE"
+          - "FEMININE"
+          - "NEUTER"
+        case:
+          type: "string"
+          enum:
+          - "NOMINATIVE"
+          - "GENITIVE"
+          - "DATIVE"
+          - "ACCUSATIVE"
+          - "LOCATIVE"
+          - "INSTRUMENTAL"
+        form:
+          type: "string"
+          enum:
+          - "LETTER"
+          - "DIGIT"
+          - "ROMAN"
+        frequency:
+          type: "integer"
+          format: "int32"
+        related:
+          type: "array"
+          items:
+            type: "string"
+        wordForms:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/SloleksWordForm"
+      required:
+      - "status"
+      - "lemma"
+      - "lexeme"
+      - "category"
+      - "frequency"
+      - "related"
+      - "wordForms"
+    WordDataResultDto:
+      type: "object"
+      properties:
+        word:
+          $ref: "#/components/schemas/SloleksWord"
