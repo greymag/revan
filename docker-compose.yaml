@@ -1,4 +1,15 @@
 services:
+  web:
+    env_file: ".env"
+    build: .
+    ports:
+      - "${EXTERNAL_APP_PORT}:${APP_PORT}"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    environment:
+      MONGODB_CONNECTION_STRING: "mongodb://$MONGODB_USERNAME:$MONGODB_PASSWORD@mongodb:27017"
+
   mongodb:
     image: mongodb/mongodb-community-server:6.0-ubi8
     ports:
@@ -10,3 +21,8 @@ services:
       - type: bind
         source: $MONGODB_DATABASE_PATH
         target: /data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 10s
+      retries: 5

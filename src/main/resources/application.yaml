@@ -5,7 +5,7 @@ ktor:
     deployment:
         port: $APP_PORT
 
-    development: true # TODO: Set to false for production
+    development: false
 
 mongodb:
     connectionString: "$MONGODB_CONNECTION_STRING"

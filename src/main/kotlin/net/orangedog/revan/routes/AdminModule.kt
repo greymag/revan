@@ -12,9 +12,6 @@ import java.io.File
 
 
 fun Application.adminModule() {
-    // TODO: authentication
-    // https://ktor.io/docs/server-auth.html
-
     val trubarConfig by inject<TrubarModuleConfig>()
 
     routing {
