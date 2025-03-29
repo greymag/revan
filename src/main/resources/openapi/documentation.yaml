@@ -1,10 +1,10 @@
 openapi: "3.1.0"
 info:
-  title: "Application API"
-  description: "Application API"
+  title: "Revan API"
+  description: "Internal service backend"
   version: "1.0.0"
 servers:
-  - url: "http://0.0.0.0:8080"
+  - url: "http://0.0.0.0:8090"
 paths:
   /admin:
     get:
