@@ -3,7 +3,7 @@ ktor:
         modules:
             - net.orangedog.revan.ApplicationKt.module
     deployment:
-        port: 8090
+        port: $APP_PORT
 
     development: true # TODO: Set to false for production
 
