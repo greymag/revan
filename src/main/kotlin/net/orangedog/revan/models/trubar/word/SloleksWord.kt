@@ -15,7 +15,7 @@ data class SloleksWord(
     val type: WordType?,
     val aspect: WordAspect?,
     val gender: WordGender?,
-    val case: WordCase?,
+    val wordCase: WordCase?,
     val form: WordForm?,
 
     val frequency: Int,
@@ -33,7 +33,7 @@ data class SloleksWord(
         private var type: WordType? = null
         private var aspect: WordAspect? = null
         private var gender: WordGender? = null
-        private var case: WordCase? = null
+        private var wordCase: WordCase? = null
         private var form: WordForm? = null
         private var frequency: Int? = null
         private var related = mutableListOf<String>()
@@ -54,7 +54,7 @@ data class SloleksWord(
                 type = type,
                 aspect = aspect,
                 gender = gender,
-                case = case,
+                wordCase = wordCase,
                 form = form,
                 frequency = frequency ?: throw IllegalArgumentException("Frequency is required"),
                 related = related.toList(),
@@ -105,8 +105,8 @@ data class SloleksWord(
         }
 
         fun setCase(value: WordCase) = apply {
-            case.ensureNotSet("case")
-            case = value
+            wordCase.ensureNotSet("wordCase")
+            wordCase = value
         }
 
         fun setForm(value: WordForm) = apply {
@@ -138,7 +138,7 @@ data class SloleksWord(
             type = null
             aspect = null
             gender = null
-            case = null
+            wordCase = null
             form = null
             frequency = null
             related.clear()

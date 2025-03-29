@@ -12,7 +12,7 @@ data class SloleksWordForm(
     val josMsd: String,
     val vform: WordVForm?,
     val number: WordNumber?,
-    val case: WordCase?,
+    val wordCase: WordCase?,
     val gender: WordGender?,
     val person: WordPerson?,
     val degree: WordDegree?,
@@ -32,7 +32,7 @@ data class SloleksWordForm(
         private var number: WordNumber? = null
         private var gender: WordGender? = null
         private var person: WordPerson? = null
-        private var case: WordCase? = null
+        private var wordCase: WordCase? = null
         private var degree: WordDegree? = null
         private var isDefiniteness: Boolean? = null
         private var isNegative: Boolean? = null
@@ -55,7 +55,7 @@ data class SloleksWordForm(
             josMsd = josMs ?: throw IllegalArgumentException("JOS MSD is required"),
             vform = vForm,
             number = number,
-            case = case,
+            wordCase = wordCase,
             gender = gender,
             person = person,
             degree = degree,
@@ -96,8 +96,8 @@ data class SloleksWordForm(
         }
 
         fun setCase(value: WordCase) = apply {
-            case.ensureNotSet("case")
-            case = value
+            wordCase.ensureNotSet("wordCase")
+            wordCase = value
         }
 
         fun setDegree(value: WordDegree) = apply {
@@ -165,7 +165,7 @@ data class SloleksWordForm(
             number = null
             gender = null
             person = null
-            case = null
+            wordCase = null
             degree = null
             isDefiniteness = null
             isNegative = null
