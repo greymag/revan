@@ -13,3 +13,7 @@ mongodb:
 trubar:
     import:
         wordsDir: "$TRUBAR_IMPORT_WORDS_DIR:"
+
+admin:
+    username: "$REVAN_ADMIN_USERNAME"
+    password: "$REVAN_ADMIN_PASSWORD"
