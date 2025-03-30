@@ -40,3 +40,6 @@ out/
 
 ### Config ###
 .env
+
+### CI/CI Temporary ###
+version.txt

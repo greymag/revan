@@ -52,3 +52,11 @@ dependencies {
     testImplementation("io.ktor:ktor-server-test-host-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }
+
+// Print version to file for CI/CD
+tasks.register("printVersion") {
+    doLast {
+        val version = project.version.toString()
+        file("version.txt").writeText(version)
+    }
+}
