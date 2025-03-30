@@ -2,7 +2,7 @@ name: Build server
 
 on: 
   push:
-    branches: [ test-deploy ]
+    branches: [ main ]
 
 env:
   REGISTRY: ghcr.io
