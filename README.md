@@ -1,5 +1,19 @@
 # Revan
 
+## Development
+
+### Setup
+
+Use `.dev/docker-compose.yml` to run the development environment (all, except the app itself).
+Create `.env` file in `.dev` from `.env.template` in the root directory.
+
+In IntelliJ IDEA, you should set the environment variables for the app in the run configuration.
+
+See the `src/main/resources/application.yaml` file for the list of variables and 
+see the `.env.template` file for the explanation of the variables.
+
+Only unique variables is `MONGODB_CONNECTION_STRING`, it should be like `mongodb://user:password@host:port`.
+
 ## Deploy
 
 ### Setup deploy server
