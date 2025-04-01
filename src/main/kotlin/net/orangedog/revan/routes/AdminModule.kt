@@ -28,10 +28,6 @@ fun Application.adminModule() {
 //            }
 
             authenticate("admin") {
-                get("/test") {
-                    call.respondText("Hello, ${call.principal<UserIdPrincipal>()?.name}!")
-                }
-
                 get("/import-words") {
                     val dirPath = trubarConfig.importWordsDir
                     if (dirPath?.isNotEmpty() != true){
