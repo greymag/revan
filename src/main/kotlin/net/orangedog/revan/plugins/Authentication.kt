@@ -9,9 +9,14 @@ fun Application.configureAuthentication(
     adminModuleConfig: AdminModuleConfig,
 ) {
     val adminUserTable = UserHashedTableAuth(
-        table = mapOf(
-            adminModuleConfig.adminUsername to adminModuleConfig.adminPassword.decodeBase64Bytes()
-        ),
+        table = mutableMapOf<String, ByteArray>().apply {
+            if (adminModuleConfig.adminPassword.isNotEmpty()) {
+                put(
+                    adminModuleConfig.adminUsername,
+                    adminModuleConfig.adminPassword.decodeBase64Bytes()
+                )
+            }
+        },
         digester = adminAuthDigestFunction
     )
 
