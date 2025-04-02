@@ -12,7 +12,7 @@ mongodb:
 
 trubar:
     import:
-        wordsDir: "$TRUBAR_IMPORT_WORDS_DIR:"
+        wordsDir: "TRUBAR_IMPORT_WORDS_PATH:"
 
 admin:
     username: "$REVAN_ADMIN_USERNAME"

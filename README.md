@@ -78,7 +78,7 @@ docker pull ghcr.io/greymag/revan:latest
 wget https://raw.githubusercontent.com/greymag/revan/main/docker-compose.yaml
 ```
 - Create `.env` (see `.env.template`) file and fill it.
-- ```bash
+```bash
 wget https://raw.githubusercontent.com/greymag/revan/main/.env.template -O .env
 nano .env
 ```

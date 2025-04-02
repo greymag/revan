@@ -8,5 +8,5 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
     volumes:
       - type: bind
-        source: $MONGODB_DATABASE_PATH
+        source: $MONGODB_DATABASE_PATH_HOST
         target: /data/db
