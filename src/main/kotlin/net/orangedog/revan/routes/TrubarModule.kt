@@ -25,7 +25,8 @@ fun Application.trubarModule() {
                     throw BadRequestException("Search parameter is required")
                 }
 
-                val list = sloleksWordRepository.findStartsWith(search)
+                val maxCount = 30
+                val list = sloleksWordRepository.findStartsWith(search, maxCount)
                 call.respond(FindResultDto(list))
             }
 

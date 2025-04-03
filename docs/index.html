@@ -768,7 +768,7 @@
     "gender" : {
       "enum" : [ "MASCULINE", "FEMININE", "NEUTER" ]
     },
-    "case" : {
+    "wordCase" : {
       "enum" : [ "NOMINATIVE", "GENITIVE", "DATIVE", "ACCUSATIVE", "LOCATIVE", "INSTRUMENTAL" ]
     },
     "form" : {
@@ -797,7 +797,7 @@
     "number" : {
       "enum" : [ "SINGULAR", "DUAL", "PLURAL" ]
     },
-    "case" : {
+    "wordCase" : {
       "enum" : [ "NOMINATIVE", "GENITIVE", "DATIVE", "ACCUSATIVE", "LOCATIVE", "INSTRUMENTAL" ]
     },
     "gender" : {
@@ -862,6 +862,9 @@
                     </li>
                     <li data-group="Default" data-name="adminImportWordsGet" class="">
                       <a href="#api-Default-adminImportWordsGet">adminImportWordsGet</a>
+                    </li>
+                    <li data-group="Default" data-name="adminPassDigestGet" class="">
+                      <a href="#api-Default-adminPassDigestGet">adminPassDigestGet</a>
                     </li>
                     <li data-group="Default" data-name="rootGet" class="">
                       <a href="#api-Default-rootGet">rootGet</a>
@@ -930,7 +933,7 @@
                           <div class="tab-pane active" id="examples-Default-adminGet-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: text/plain"\
-"http://0.0.0.0:8090/admin"</code></pre>
+"http://127.0.0.1:8091/admin"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-adminGet-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1181,7 +1184,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-adminImportWordsGet-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: text/plain"\
-"http://0.0.0.0:8090/admin/import-words"</code></pre>
+"http://127.0.0.1:8091/admin/import-words"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-adminImportWordsGet-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1407,6 +1410,391 @@ except ApiException as e:
                         </article>
                       </div>
                       <hr>
+                    <div id="api-Default-adminPassDigestGet">
+                      <article id="api-Default-adminPassDigestGet-0" data-group="User" data-name="adminPassDigestGet" data-version="0">
+                        <div class="pull-left">
+                          <h1>adminPassDigestGet</h1>
+                          <p></p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/admin/pass-digest</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Default-adminPassDigestGet-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Default-adminPassDigestGet-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Default-adminPassDigestGet-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Default-adminPassDigestGet-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Default-adminPassDigestGet-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Default-adminPassDigestGet-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Default-adminPassDigestGet-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Default-adminPassDigestGet-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Default-adminPassDigestGet-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Default-adminPassDigestGet-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Default-adminPassDigestGet-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Default-adminPassDigestGet-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X GET\
+-H "Accept: text/plain"\
+"http://127.0.0.1:8091/admin/pass-digest?pass="</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Default-adminPassDigestGet-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.DefaultApi;
+
+import java.io.File;
+import java.util.*;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        
+        DefaultApi apiInstance = new DefaultApi();
+         pass = ; //  | 
+        try {
+            apiInstance.adminPassDigestGet(pass);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#adminPassDigestGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Default-adminPassDigestGet-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.DefaultApi;
+
+public class DefaultApiExample {
+
+    public static void main(String[] args) {
+        DefaultApi apiInstance = new DefaultApi();
+         pass = ; //  | 
+        try {
+            apiInstance.adminPassDigestGet(pass);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DefaultApi#adminPassDigestGet");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Default-adminPassDigestGet-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Default-adminPassDigestGet-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp"> *pass = ; //  (optional)
+
+DefaultApi *apiInstance = [[DefaultApi alloc] init];
+
+[apiInstance adminPassDigestGetWith:pass
+              completionHandler: ^(NSError* error) {
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-adminPassDigestGet-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var RevanApi = require('revan_api');
+
+var api = new RevanApi.DefaultApi()
+var opts = { 
+  'pass':  // {{}} 
+};
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.adminPassDigestGet(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Default-adminPassDigestGet-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Default-adminPassDigestGet-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class adminPassDigestGetExample
+    {
+        public void main()
+        {
+
+            var apiInstance = new DefaultApi();
+            var pass = new (); //  |  (optional) 
+
+            try
+            {
+                apiInstance.adminPassDigestGet(pass);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling DefaultApi.adminPassDigestGet: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-adminPassDigestGet-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\ApiDefaultApi();
+$pass = ; //  | 
+
+try {
+    $api_instance->adminPassDigestGet($pass);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->adminPassDigestGet: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-adminPassDigestGet-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::DefaultApi;
+
+my $api_instance = WWW::SwaggerClient::DefaultApi->new();
+my $pass = ; #  | 
+
+eval { 
+    $api_instance->adminPassDigestGet(pass => $pass);
+};
+if ($@) {
+    warn "Exception when calling DefaultApi->adminPassDigestGet: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Default-adminPassDigestGet-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.DefaultApi()
+pass =  #  |  (optional)
+
+try: 
+    api_instance.admin_pass_digest_get(pass=pass)
+except ApiException as e:
+    print("Exception when calling DefaultApi->adminPassDigestGet: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">pass</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_adminPassDigestGet_pass">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    
+                                                </span>
+                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
+
+                          <h2>Responses</h2>
+                            <h3> Status: 403 - Forbidden </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-adminPassDigestGet-403-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-adminPassDigestGet-403-schema">
+                                  <div id='responses-adminPassDigestGet-403-schema-403' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Forbidden",
+  "content" : {
+    "text/plain" : {
+      "schema" : {
+        "x-content-type" : "text/plain"
+      },
+      "examples" : {
+        "Example#1" : {
+          "value" : "This endpoint is only available in development mode"
+        }
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["text/plain"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-adminPassDigestGet-403-schema-data').val(stringify(schema));
+                                        var result = $('#responses-adminPassDigestGet-403-schema-403');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-adminPassDigestGet-403-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 200 - OK </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-adminPassDigestGet-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-adminPassDigestGet-200-schema">
+                                  <div id='responses-adminPassDigestGet-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK",
+  "content" : {
+    "text/plain" : {
+      "schema" : {
+        "x-content-type" : "text/plain"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["text/plain"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-adminPassDigestGet-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-adminPassDigestGet-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-adminPassDigestGet-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 400 - Bad Request </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-adminPassDigestGet-400-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-adminPassDigestGet-400-schema">
+                                  <div id='responses-adminPassDigestGet-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Bad Request",
+  "content" : {
+    "text/plain" : {
+      "schema" : {
+        "x-content-type" : "text/plain"
+      },
+      "examples" : {
+        "Example#1" : {
+          "value" : "'pass' query parameter is required"
+        }
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["text/plain"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-adminPassDigestGet-400-schema-data').val(stringify(schema));
+                                        var result = $('#responses-adminPassDigestGet-400-schema-400');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-adminPassDigestGet-400-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
                     <div id="api-Default-rootGet">
                       <article id="api-Default-rootGet-0" data-group="User" data-name="rootGet" data-version="0">
                         <div class="pull-left">
@@ -1441,7 +1829,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-rootGet-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: text/plain"\
-"http://0.0.0.0:8090/"</code></pre>
+"http://127.0.0.1:8091/"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-rootGet-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1692,7 +2080,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-trubarFindGet-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: */*"\
-"http://0.0.0.0:8090/trubar/find?search="</code></pre>
+"http://127.0.0.1:8091/trubar/find?search="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-trubarFindGet-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2028,7 +2416,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-trubarGet-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: text/plain"\
-"http://0.0.0.0:8090/trubar"</code></pre>
+"http://127.0.0.1:8091/trubar"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-trubarGet-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2279,7 +2667,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Default-trubarWordDataGet-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "Accept: */*"\
-"http://0.0.0.0:8090/trubar/wordData?lemma="</code></pre>
+"http://127.0.0.1:8091/trubar/wordData?lemma="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Default-trubarWordDataGet-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;

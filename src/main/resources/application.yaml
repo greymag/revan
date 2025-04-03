@@ -5,14 +5,14 @@ ktor:
     deployment:
         port: $APP_PORT
 
-    development: false
+    development: "$APP_DEVELOPMENT_MODE:false"
 
 mongodb:
     connectionString: "$MONGODB_CONNECTION_STRING"
 
 trubar:
     import:
-        wordsDir: "$TRUBAR_IMPORT_WORDS_DIR:"
+        wordsDir: "TRUBAR_IMPORT_WORDS_PATH:"
 
 admin:
     username: "$REVAN_ADMIN_USERNAME"

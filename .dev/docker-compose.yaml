@@ -1,0 +1,12 @@
+services:
+  mongodb:
+    image: mongodb/mongodb-community-server:6.0-ubi8
+    ports:
+      - "${MONGODB_PORT}:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
+    volumes:
+      - type: bind
+        source: $MONGODB_DATABASE_PATH_HOST
+        target: /data/db

@@ -1,25 +1,29 @@
 services:
   web:
     env_file: ".env"
-    build: .
+    image: ghcr.io/greymag/revan:latest
+    restart: unless-stopped
     ports:
-      - "${EXTERNAL_APP_PORT}:${APP_PORT}"
+      - "${APP_PORT_HOST}:${APP_PORT}"
     depends_on:
       mongodb:
         condition: service_healthy
+    volumes:
+      - type: bind
+        source: "${TRUBAR_IMPORT_WORDS_PATH_HOST}"
+        target: "${TRUBAR_IMPORT_WORDS_PATH}"
     environment:
       MONGODB_CONNECTION_STRING: "mongodb://$MONGODB_USERNAME:$MONGODB_PASSWORD@mongodb:27017"
 
   mongodb:
     image: mongodb/mongodb-community-server:6.0-ubi8
-    ports:
-      - "${MONGODB_PORT}:27017"
+    restart: unless-stopped
     environment:
       - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USERNAME
       - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
     volumes:
       - type: bind
-        source: $MONGODB_DATABASE_PATH
+        source: $MONGODB_DATABASE_PATH_HOST
         target: /data/db
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]

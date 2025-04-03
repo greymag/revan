@@ -4,7 +4,7 @@ info:
   description: "Internal service backend"
   version: "1.0.0"
 servers:
-  - url: "http://0.0.0.0:8090"
+  - url: "http://127.0.0.1:8091"
 paths:
   /admin:
     get:
@@ -38,6 +38,40 @@ paths:
                   value: ""
                 Example#4:
                   value: "Import directory is not set"
+  /admin/pass-digest:
+    get:
+      description: ""
+      parameters:
+      - name: "pass"
+        in: "query"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        "403":
+          description: "Forbidden"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "This endpoint is only available in development mode"
+        "200":
+          description: "OK"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+        "400":
+          description: "Bad Request"
+          content:
+            text/plain:
+              schema:
+                type: "string"
+              examples:
+                Example#1:
+                  value: "'pass' query parameter is required"
   /trubar:
     get:
       description: ""
@@ -209,7 +243,7 @@ components:
           - "SINGULAR"
           - "DUAL"
           - "PLURAL"
-        case:
+        wordCase:
           type: "string"
           enum:
           - "NOMINATIVE"
@@ -335,7 +369,7 @@ components:
           - "MASCULINE"
           - "FEMININE"
           - "NEUTER"
-        case:
+        wordCase:
           type: "string"
           enum:
           - "NOMINATIVE"
