@@ -1,7 +1,13 @@
 package net.orangedog.revan.repository.trubar
 
 import com.mongodb.MongoException
-import com.mongodb.client.model.*
+import com.mongodb.client.model.Aggregates.*
+import com.mongodb.client.model.Collation
+import com.mongodb.client.model.Filters
+import com.mongodb.client.model.Projections.*
+import com.mongodb.client.model.ReplaceOptions
+import com.mongodb.client.model.Sorts.ascending
+import com.mongodb.client.model.Sorts.orderBy
 import com.mongodb.kotlin.client.coroutine.MongoCollection
 import com.mongodb.kotlin.client.coroutine.MongoDatabase
 import io.ktor.util.logging.*
@@ -10,6 +16,7 @@ import kotlinx.coroutines.flow.toList
 import net.orangedog.revan.models.trubar.word.SloleksFindResultEntry
 import net.orangedog.revan.models.trubar.word.SloleksWord
 import net.orangedog.revan.plugins.sloleksWords
+import org.bson.Document
 import org.bson.types.ObjectId
 
 interface SloleksWordRepository {
@@ -17,7 +24,7 @@ interface SloleksWordRepository {
     suspend fun replaceOne(word: SloleksWord)
     suspend fun findOneById(objectId: ObjectId): SloleksWord?
     suspend fun findOneByLemma(lemma: String): SloleksWord?
-    suspend fun findStartsWith(str: String): List<SloleksFindResultEntry>
+    suspend fun findStartsWith(str: String, limit: Int): List<SloleksFindResultEntry>
 }
 
 class SloleksWordRepositoryImpl(
@@ -51,11 +58,30 @@ class SloleksWordRepositoryImpl(
             .firstOrNull()
     }
 
-    override suspend fun findStartsWith(str: String): List<SloleksFindResultEntry> = request {
-        find<SloleksFindResultEntry>(Filters.regex(SloleksWord::lemma.name, "^${Regex.escape(str)}", "i"))
-            .projection(Projections.include(SloleksWord::lemma.name, SloleksWord::category.name))
+    override suspend fun findStartsWith(str: String, limit: Int): List<SloleksFindResultEntry> = request {
+        val pattern = prepareSearchRegex(str)
+        aggregate<SloleksFindResultEntry>(
+            listOf(
+                match(Filters.regex(SloleksWord::lemma.name, pattern, "i")),
+                project(
+                    fields(
+                        include(SloleksWord::lemma.name, SloleksWord::category.name),
+                        computed(
+                            "lemmaLength",
+                            Document("\$strLenCP", "\$${SloleksWord::lemma.name}")
+                        )
+                    )
+                ),
+                sort(
+                    orderBy(
+                        ascending("lemmaLength"),
+                        ascending(SloleksWord::lemma.name)
+                    )
+                ),
+                limit(limit)
+            )
+        )
             .collation(Collation.builder().locale("sl").caseLevel(false).build())
-            .sort(Sorts.ascending(SloleksWord::lemma.name))
             .toList()
     }
 
@@ -67,4 +93,19 @@ class SloleksWordRepositoryImpl(
     }
 
     private fun getCollection() = mongoDatabase.sloleksWords
+
+    private fun prepareSearchRegex(input: String): String {
+        val map = mapOf(
+            's' to "[sš]",
+            'c' to "[cč]",
+            'z' to "[zž]",
+        )
+        val sb = StringBuilder("^") // Anchor at beginning
+
+        for (char in input.lowercase()) {
+            sb.append(map[char] ?: Regex.escape(char.toString()))
+        }
+
+        return sb.toString()
+    }
 }
